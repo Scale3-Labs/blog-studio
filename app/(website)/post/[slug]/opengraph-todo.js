@@ -1,6 +1,6 @@
-import { ImageResponse } from "@vercel/og";
-import { getPostBySlug } from "@/lib/sanity/client";
 import OgImage from "@/components/ogimage";
+import { getPostBySlug } from "@/lib/sanity/client";
+import { ImageResponse } from "@vercel/og";
 
 // const InterRegular = fetch(
 //   new URL("../../../../public/fonts/Inter.ttf", import.meta.url)
@@ -14,10 +14,6 @@ export default async function handler({ params }) {
   const post = await getPostBySlug(params.slug);
 
   const fontData = await InterBold;
-  // const [interRegularFont, interBoldFont] = await Promise.all([
-  //   InterRegular,
-  //   InterBold
-  // ]);
 
   return new ImageResponse(<OgImage post={post} />, {
     width: 1200,
@@ -28,12 +24,6 @@ export default async function handler({ params }) {
         data: fontData,
         style: "normal"
       }
-      // {
-      //   name: "Inter",
-      //   data: interBoldFont,
-      //   style: "normal",
-      //   weight: 700
-      // }
     ]
   });
 }
